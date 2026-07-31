@@ -13,7 +13,9 @@ jobs:
       matrix:
         include:
           - os: macos-latest
-            artifact: macos
+            artifact: macos-arm64
+          - os: macos-14
+            artifact: macos-x64
           - os: ubuntu-latest
             artifact: linux
           - os: windows-latest
@@ -90,9 +92,10 @@ jobs:
 
             | 平台 | 文件 | 说明 |
             |---|---|---|
-            | macOS | `openwork-mac-*.dmg` / `openwork-mac-*.zip` | 未签名，首次打开需右键 → 打开 |
+            | macOS (Apple Silicon) | `openwork-mac-arm64-*.dmg` / `.zip` | 未签名，首次打开需右键 → 打开 |
+            | macOS (Intel) | `openwork-mac-x64-*.dmg` / `.zip` | 未签名，首次打开需右键 → 打开 |
             | Windows | `openwork-win-*.exe` | NSIS 安装包 |
-            | Linux | `openwork-linux-*.AppImage` / `openwork-linux-*.tar.gz` | AppImage 需 `chmod +x` 后运行 |
+            | Linux | `openwork-linux-*.AppImage` / `*.tar.gz` | AppImage 需 `chmod +x` 后运行 |
 
             ### 快速开始
 
