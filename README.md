@@ -1,100 +1,72 @@
-# OpenWork
+<div align="center">
 
-OpenWork is a free, open-source desktop app made for sharing AI workflows. It is an open-source alternative to Claude Cowork and Codex for macOS, Windows, and Linux.
+# OpenWork 中文社区版
 
-Add one OpenWork MCP to Codex, Claude Code, Cursor, or another compatible agent and reuse the same skills, MCPs, and connected services across your tools, teammates, and machines. Create something once, share it with coworkers or friends, or keep it for yourself.
+**100% 简体中文界面的 AI 工作流共享桌面应用 · 非官方社区汉化版**
 
-The desktop app is there when you want a dedicated workspace, but it is not required. You can use OpenWork from the agent you already have. For larger organizations, the admin interface lets you publish capabilities, manage access, and configure shared or per-user connections.
+[![GitHub stars](https://img.shields.io/github/stars/988hj7tczd-oss/openwork-zh?style=flat-square)](https://github.com/988hj7tczd-oss/openwork-zh/stargazers)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
+[![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Windows%20%7C%20Linux-lightgrey.svg?style=flat-square)](#下载安装)
 
-[**Download OpenWork**](https://openworklabs.com/download)
+> ⚠️ **非官方社区版**：本项目基于 [different-ai/openwork](https://github.com/different-ai/openwork)（18.8k ⭐）的 MIT 开源代码，由中文社区维护的汉化版本，与官方无隶属关系。
 
-<img width="1481" height="842" alt="OpenWork desktop app" src="https://github.com/user-attachments/assets/66a8dd9b-5260-488c-957d-e54331e78c1c" />
+</div>
 
-## Install with your AI agent
+## 🎯 为什么有这个版本
 
-Already use an AI agent? Copy this prompt and paste it into Claude Code, Cursor, Codex, ChatGPT, or any agent that can run commands on your computer.
+官方 OpenWork 内置简体中文，但**只翻译了约 63% 的界面文案**，大量设置项、连接向导、诊断页面仍是英文。本项目在官方基础上：
 
-```text
-Install OpenWork on my computer, set up my first workspace, and open it ready to use. Follow the steps in https://openworklabs.com/start.md?v=hero
-```
+- ✅ **100% 简体中文界面**：补齐官方缺失的 718 条翻译，覆盖率 63% → **100%**
+- ✅ **修复官方遗留英文**：补译官方漏翻的 25 处界面文案（运行时配置、服务器端点、云设置等）
+- ✅ **保留官方全部功能**：与官方完全同源，不含 `ee/` 企业版目录
+- ✅ **持续同步官方更新**：定期 merge upstream，汉化不回退
 
-1. Installs OpenWork
-2. Creates your workspace
-3. Opens it ready to run
+## ✨ 功能亮点
 
-## Use OpenWork from any agent
+| 功能 | 说明 |
+|---|---|
+| 🖥️ 桌面应用 | macOS / Windows / Linux，双击选文件夹即用 |
+| 🤖 AI 工作流共享 | 复用 skills、MCP、命令，与团队共享 |
+| 🔌 任意 Agent 接入 | OpenWork MCP 可接入 Codex、Claude Code、Cursor、opencode |
+| 📱 聊天集成 | WhatsApp / Telegram 远程操作 |
+| 👥 团队管理 | OpenWork Den 控制平面（组织/成员/模型权限） |
+| 🧠 记忆库 | 跨会话保存智能体记住的事实 |
 
-The OpenWork MCP brings your assigned skills, plugins, MCP connections, Google Workspace, and Microsoft 365 capabilities into any compatible agent.
+## 📥 下载安装
 
-It exposes two tools: `search_capabilities` finds what you can use, and `execute_capability` runs it. After adding the MCP, your client opens a browser so you can sign in and choose your OpenWork organization.
+从 [Releases](https://github.com/988hj7tczd-oss/openwork-zh/releases) 下载对应平台安装包：
 
-### Codex
+| 平台 | 文件 | 说明 |
+|---|---|---|
+| macOS | `openwork-darwin-*.dmg` | 未签名，首次打开需 **右键 → 打开**（与官方同款） |
+| Windows | `openwork-win-*.exe` | NSIS 安装包 |
+| Linux | `openwork-linux-*.AppImage` | 需 `chmod +x` 后运行 |
 
-```bash
-codex mcp add openwork --url https://api.openworklabs.com/mcp/agent
-```
+> 🚀 国内加速：Gitee 镜像（备用下载通道）
 
-### Claude Code
+## 🚀 快速开始
 
-```bash
-claude mcp add --transport http openwork https://api.openworklabs.com/mcp/agent
-```
+1. 下载并安装对应平台安装包
+2. 打开 OpenWork，**选择一个文件夹**作为工作区
+3. 点击左下角设置 → **外观 → 语言**，选择 **简体中文**
+4. 在设置中连接你的模型提供商（OpenAI / Anthropic / DeepSeek 等）
+5. 在输入框输入任务，开始使用
 
-### OpenCode
+## 🔄 与官方的关系
 
-Add this to `opencode.json`:
+- **代码来源**：fork 自 [different-ai/openwork](https://github.com/different-ai/openwork)，核心代码遵循 MIT 协议
+- **翻译回馈**：本项目的简体中文翻译已提交 PR 回官方，随官方版本发布
+- **同步策略**：定期合并上游更新；每次同步后重新验证汉化覆盖率
+- **不含企业版**：不包含 `ee/` 目录（Fair Source 许可，仅官方分发）
 
-```json
-{
-  "mcp": {
-    "openwork": {
-      "type": "remote",
-      "enabled": true,
-      "url": "https://api.openworklabs.com/mcp/agent",
-      "oauth": {}
-    }
-  }
-}
-```
+## 🤝 参与贡献
 
-### Any MCP client
+- **翻译纠错**：发现任何界面仍是英文或翻译不当，提 Issue 或 PR
+- **代码贡献**：功能开发请优先贡献给[官方仓库](https://github.com/different-ai/openwork)
+- **宣传支持**：Star 本项目，或分享给需要中文版的朋友
 
-Use this remote MCP server URL:
+## 📄 版权声明
 
-```text
-https://api.openworklabs.com/mcp/agent
-```
-
-## OpenWork Den
-
-OpenWork Den is the control plane for managing OpenWork across a team or organization.
-
-- Provision inference at scale and control which members and teams can use each model provider.
-- Invite teammates, create teams, and manage access from one place.
-- Set desktop policies, restrict local model access, and control which app versions your organization can use.
-- Publish skills and plugins through marketplaces, then assign them to the organization, a team, or specific people.
-- Import Anthropic-compatible plugins and make their supported skills and remote MCPs available through the OpenWork MCP.
-
-<img width="1546" height="915" alt="OpenWork Den organization control plane" src="https://github.com/user-attachments/assets/033dbbfe-5661-4f7c-869c-46278406d6cc" />
-
-## Documentation
-
-[Read the OpenWork docs.](https://openworklabs.com/docs)
-
-## Local development
-
-For one checkout, keep using `pnpm dev`; with no extra environment variables it reuses the existing shared dev profile.
-
-To run multiple git worktrees at once, use:
-
-```bash
-pnpm dev:worktree
-```
-
-That sets `OPENWORK_DEV_PROFILE=auto`, derives a stable profile name from the worktree path, lets Electron choose a free CDP port, and asks Vite for a free dev-server port. You can also choose a named profile, for example `OPENWORK_DEV_PROFILE=my-feature OPENWORK_ELECTRON_REMOTE_DEBUG_PORT=0 PORT=0 pnpm dev`.
-
-`dev:worktree` also defaults `OPENWORK_ELECTRON_USE_MOCK_KEYCHAIN=1`. A brand-new profile has no stored credentials, so on macOS the real keychain prompts as soon as Chromium persists an authenticated cookie, and that modal blocks Electron's main loop until it is dismissed. Set `OPENWORK_ELECTRON_USE_MOCK_KEYCHAIN=0` if you specifically want the system keychain in an isolated profile.
-
-Dev startup prints a banner like `[openwork] dev profile=... cdp=http://127.0.0.1:9223`; use it to find the profile directory and pass the CDP URL to local tooling.
-
-If a second instance cannot get the profile lock it now says so and exits, instead of lingering with an open CDP port and no window.
+- 核心代码版权归 [Different AI, Inc.](https://github.com/different-ai) 所有，采用 **MIT 许可证**
+- **OpenWork** 是 different-ai 的商标，本项目仅作描述性引用
+- 本项目由社区志愿者维护，与官方无隶属、背书关系
