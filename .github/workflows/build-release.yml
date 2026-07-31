@@ -53,10 +53,16 @@ jobs:
         run: pnpm --filter @openwork/desktop exec electron-builder --config electron-builder.yml --publish never
 
       - name: Upload Electron artifacts
+        # 只上传安装包文件，避免中间产物污染 Release
         uses: actions/upload-artifact@v4
         with:
           name: openwork-zh-${{ matrix.artifact }}
-          path: apps/desktop/dist-electron/**
+          path: |
+            apps/desktop/dist-electron/*.dmg
+            apps/desktop/dist-electron/*.zip
+            apps/desktop/dist-electron/*.exe
+            apps/desktop/dist-electron/*.AppImage
+            apps/desktop/dist-electron/*.tar.gz
           if-no-files-found: error
 
   release:
