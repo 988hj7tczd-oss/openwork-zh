@@ -138,14 +138,14 @@ export function NewTaskComposer(props: NewTaskComposerProps) {
         void connectPromise.then((connect) => {
           if (mcpConnectPushRef.current !== pushId) return;
           const freshServers = [...localServers, ...connect.mcpServers];
-          const freshStatus = freshServers.length ? null : "No MCP servers loaded.";
+          const freshStatus = freshServers.length ? null : t("composer.no_mcp_servers");
           setMcpServers(freshServers);
           setMcpStatuses(connect.mcpStatuses);
           setMcpStatus(freshStatus);
         });
         const servers = [...localServers, ...cachedConnect.mcpServers];
         const statuses = cachedConnect.mcpStatuses;
-        const status = servers.length ? null : "No MCP servers loaded.";
+        const status = servers.length ? null : t("composer.no_mcp_servers");
         setMcpServers(servers);
         setMcpStatuses(statuses);
         setMcpStatus(status);
@@ -250,7 +250,7 @@ export function NewTaskComposer(props: NewTaskComposerProps) {
       steering={false}
       submissionPreparing={props.busy || Boolean(props.submissionPreparing)}
       submissionBlocked={props.busy || Boolean(props.submissionBlocked)}
-      submissionInputStatusLabel={props.busy ? "Preparing your workspace…" : undefined}
+      submissionInputStatusLabel={props.busy ? t("composer.preparing_workspace") : undefined}
       queuedCount={0}
       disabled={Boolean(context?.modelUnavailable)}
       modelUnavailable={context?.modelUnavailable}

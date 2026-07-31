@@ -1,13 +1,14 @@
+import { t } from "@/i18n";
 import type { SessionCloudMcpMaintenanceState } from "./use-session-mcp-maintenance";
 
 export type OpenWorkConnectStatus = {
   state: "checking" | "ready" | "needs_attention";
-  label: "Checking" | "Ready" | "Needs attention";
+  label: string;
   description: string;
 };
 
 export function openWorkConnectAttentionTitle(description: string): string {
-  return `One possible issue: ${description}`;
+  return t("connect.attention_title", { description });
 }
 
 export function resolveOpenWorkConnectStatus(
@@ -19,25 +20,28 @@ export function resolveOpenWorkConnectStatus(
   if (maintenance?.status === "ready") {
     return {
       state: "ready",
-      label: "Ready",
-      description: "Connected service tools are available.",
+      label: t("connect.status_ready"),
+      description: t("connect.status_ready_desc"),
     };
   }
 
   if (maintenance?.status === "failed" || maintenance?.status === "skipped") {
     return {
       state: "needs_attention",
-      label: "Needs attention",
+      label: t("connect.status_needs_attention"),
       description: maintenance.issue?.message
-        ?? "OpenWork Connect could not verify connected service tools. Run diagnostics for details.",
+        ?? t("connect.status_needs_attention_desc"),
     };
   }
 
   return {
     state: "checking",
-    label: "Checking",
+    label: t("connect.status_checking"),
     description: maintenance?.status === "retrying"
-      ? `Restoring connected service tools (${maintenance.attempt}/${maintenance.maxAttempts}).`
-      : "Checking connected service tools in the background.",
+      ? t("connect.status_restoring_desc", {
+        attempt: maintenance.attempt,
+        maxAttempts: maintenance.maxAttempts,
+      })
+      : t("connect.status_checking_desc"),
   };
 }
