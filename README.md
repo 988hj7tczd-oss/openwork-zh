@@ -65,6 +65,12 @@
 - **代码贡献**：功能开发请优先贡献给[官方仓库](https://github.com/different-ai/openwork)
 - **宣传支持**：Star 本项目，或分享给需要中文版的朋友
 
+## 🌐 中文社区
+
+- 📊 [AI House 排行榜](https://www.aibunkhouse.com/rankings/) — 云端大模型 / 本地部署 / Agent 工具真实用户投票排行
+- 🧰 [AI House 技能 & 工具库](https://www.aibunkhouse.com/tools/) — 更多中文 AI 技能与开源工具
+- 🗣️ [AI House 论坛](https://www.aibunkhouse.com/forum/) — 交流 AI 使用心得与工具推荐
+
 ## 📄 版权声明
 
 - 核心代码版权归 [Different AI, Inc.](https://github.com/different-ai) 所有，采用 **MIT 许可证**
