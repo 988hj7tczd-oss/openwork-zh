@@ -14,12 +14,16 @@ jobs:
         include:
           - os: macos-latest
             artifact: macos-arm64
+            electron_arch: --arm64
           - os: macos-14
             artifact: macos-x64
+            electron_arch: --x64
           - os: ubuntu-latest
             artifact: linux
+            electron_arch: ""
           - os: windows-latest
             artifact: windows
+            electron_arch: ""
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -52,7 +56,8 @@ jobs:
       - name: Package Electron desktop (no publish)
         # publish 配置硬编码指向官方仓库(different-ai/openwork)，必须 --publish never
         # 产物由下方 release job 统一发布到 openwork-zh 的 Releases
-        run: pnpm --filter @openwork/desktop exec electron-builder --config electron-builder.yml --publish never
+        # electron_arch 显式指定 mac 架构（arm64/x64），避免产物文件名撞车
+        run: pnpm --filter @openwork/desktop exec electron-builder --config electron-builder.yml --publish never ${{ matrix.electron_arch }}
 
       - name: Upload Electron artifacts
         # 只上传安装包文件，避免中间产物污染 Release
