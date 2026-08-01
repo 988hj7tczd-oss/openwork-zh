@@ -48,7 +48,10 @@ jobs:
           bun-version: 1.3.10
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        # pnpm 10+ 不会自动安装传递的平台二进制 optional 依赖
+        # 必须显式指定 supportedArchitectures，否则跨架构打包时缺平台包
+        # （如 node-pty 的 darwin-x64 在 arm64 runner 上不会自动装）
+        run: pnpm install --frozen-lockfile --config.supportedArchitectures.cpu="x64,arm64" --config.supportedArchitectures.libc="glibc,musl"
 
       - name: Build Electron
         run: pnpm --filter @openwork/desktop build:electron
