@@ -87,10 +87,10 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v0.1.4-zh.1
-          name: OpenWork 中文社区版 v0.1.4-zh.1
+          tag_name: v0.1.5-zh.1
+          name: OpenWork 中文社区版 v0.1.5-zh.1
           body: |
-            ## OpenWork 中文社区版 v0.1.4-zh.1
+            ## OpenWork 中文社区版 v0.1.5-zh.1
 
             100% 简体中文界面的 AI 工作流共享桌面应用（基于 different-ai/openwork，非官方社区版）。
 
