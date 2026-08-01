@@ -882,6 +882,17 @@ if (remoteDebugPort > 0) {
   app.commandLine.appendSwitch("remote-debugging-port", String(remoteDebugPort));
   app.commandLine.appendSwitch("remote-debugging-address", "127.0.0.1");
 }
+// Chromium 的 navigator.language 默认返回 "en-US"，不跟随系统语言。
+// 系统语言为中文时强制使用 zh-CN，使渲染进程能检测到中文环境
+// （配合 initLocale 的“中文系统默认简体中文”逻辑）。
+try {
+  const systemLocale = app.getLocale();
+  if (systemLocale && systemLocale.toLowerCase().startsWith("zh")) {
+    app.commandLine.appendSwitch("lang", "zh-CN");
+  }
+} catch (e) {
+  // ignore locale detection errors
+}
 // Make the resolved port available to the embedded server so it flows into
 // agent instructions via ensureOpenworkAgent → resolveAgentTemplate.
 process.env.OPENWORK_ELECTRON_REMOTE_DEBUG_PORT = String(remoteDebugPort);
