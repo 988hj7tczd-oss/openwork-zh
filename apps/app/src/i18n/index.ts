@@ -214,7 +214,7 @@ export const initLocale = (): Language => {
   }
 
   // 无存储偏好时跟随系统语言：中文系统默认简体中文，其余默认英文
-  const browserLang = (typeof navigator !== "undefined" ? navigator.language || navigator.userLanguage || "" : "").toLowerCase();
+  const browserLang = (typeof navigator !== "undefined" ? navigator.language || "" : "").toLowerCase();
   if (browserLang.startsWith("zh")) {
     localeValue = "zh";
     if (typeof document !== "undefined") {
