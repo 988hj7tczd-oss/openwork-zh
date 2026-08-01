@@ -213,6 +213,16 @@ export const initLocale = (): Language => {
     console.warn("Failed to read language preference:", e);
   }
 
+  // 无存储偏好时跟随系统语言：中文系统默认简体中文，其余默认英文
+  const browserLang = (typeof navigator !== "undefined" ? navigator.language || navigator.userLanguage || "" : "").toLowerCase();
+  if (browserLang.startsWith("zh")) {
+    localeValue = "zh";
+    if (typeof document !== "undefined") {
+      document.documentElement.setAttribute("lang", "zh");
+    }
+    return "zh";
+  }
+
   if (typeof document !== "undefined") {
     document.documentElement.setAttribute("lang", "en");
   }
