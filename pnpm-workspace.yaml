@@ -5,6 +5,17 @@ minimumReleaseAgeExclude:
   - "enhanced-resolve"
   - "postcss"
 
+# 安装所有平台/架构的 optional 二进制（node-pty 等），
+# 否则跨架构打包（mac x64）会缺平台包
+supportedArchitectures:
+  cpu:
+    - x64
+    - arm64
+  os:
+    - darwin
+    - linux
+    - win32
+
 packages:
   - "apps/*"
   - "packages/*"
