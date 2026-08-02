@@ -8,6 +8,8 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Windows%20%7C%20Linux-lightgrey.svg?style=flat-square)](#下载安装)
 
+**简体中文** | [English](./README_EN.md)
+
 > ⚠️ **非官方社区版**：本项目基于 [different-ai/openwork](https://github.com/different-ai/openwork)（18.8k ⭐）的 MIT 开源代码，由中文社区维护的汉化版本，与官方无隶属关系。
 
 </div>
