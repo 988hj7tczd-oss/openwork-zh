@@ -5,7 +5,6 @@ import { ArrowRight, X, Zap } from "lucide-react";
 import { DEFAULT_MODEL } from "@/app/constants";
 import type { ComposerAttachment } from "@/app/types";
 import { resolveOrganizationPromptCardContent } from "@/components/chat/task-suggestions";
-import { t } from "@/i18n";
 import { useCheckDesktopRestriction, useOrgRestrictions } from "@/react-app/domains/cloud/desktop-config-provider";
 import { useDenAuth } from "@/react-app/domains/cloud/den-auth-provider";
 import {
@@ -24,31 +23,25 @@ type HeroSuggestion = {
   prompt: string;
 };
 
-type HeroSuggestionKeyed = {
-  titleKey: string;
-  descriptionKey: string;
-  prompt: string;
-};
-
-const DEFAULT_SUGGESTIONS: HeroSuggestionKeyed[] = [
+const DEFAULT_SUGGESTIONS: HeroSuggestion[] = [
   {
-    titleKey: "composer.suggestion_summarize_title",
-    descriptionKey: "composer.suggestion_summarize_desc",
+    title: "Summarize my week",
+    description: "Pull highlights from email and calendar.",
     prompt: "Summarize my week: pull the highlights from my connected email and calendar and give me a short digest of what happened and what needs my attention.",
   },
   {
-    titleKey: "composer.suggestion_spreadsheet_title",
-    descriptionKey: "composer.suggestion_spreadsheet_desc",
+    title: "Clean up a spreadsheet",
+    description: "Drop in a CSV and describe the result you want.",
     prompt: "Create a sample CSV file with 20 rows of fake customer data (name, email, company, revenue). Then show me a summary of the data.",
   },
   {
-    titleKey: "composer.suggestion_document_title",
-    descriptionKey: "composer.suggestion_document_desc",
+    title: "Draft a document",
+    description: "Reports, emails, or briefs from a few bullet points.",
     prompt: "Draft a one-page project brief. Ask me for the bullet points you need, then turn them into a clear, well-structured document.",
   },
   {
-    titleKey: "composer.suggestion_web_title",
-    descriptionKey: "composer.suggestion_web_desc",
+    title: "Automate a web task",
+    description: "Use the built-in browser for repetitive steps.",
     prompt: "Open craigslist.org in the browser and search for couches for sale. Show me the top 5 results with prices.",
   },
 ];
@@ -79,12 +72,6 @@ export function SessionEmptyHero(props: SessionEmptyHeroProps) {
   const denAuth = useDenAuth();
   const openWorkModelsPromoEligible = useOpenWorkModelsPromoEligibility();
   const [modelsPromoHidden, setModelsPromoHidden] = useState(isOpenWorkModelsPromoHidden);
-  const cloudMcpSubmissionState = props.composer?.cloudMcpSubmissionState;
-  const submissionPreparing = cloudMcpSubmissionState?.status === "checking" ||
-    cloudMcpSubmissionState?.status === "repairing";
-  const submissionBlocked = cloudMcpSubmissionState !== undefined &&
-    cloudMcpSubmissionState.status !== "idle" &&
-    cloudMcpSubmissionState.status !== "sending";
 
   useEffect(() => {
     const handlePromoChanged = () => setModelsPromoHidden(isOpenWorkModelsPromoHidden());
@@ -112,15 +99,11 @@ export function SessionEmptyHero(props: SessionEmptyHeroProps) {
       });
       return { title: card.title, description: card.description, prompt: card.selectionPrompt };
     })
-    : DEFAULT_SUGGESTIONS.map((suggestion) => ({
-      title: t(suggestion.titleKey),
-      description: t(suggestion.descriptionKey),
-      prompt: suggestion.prompt,
-    }));
+    : DEFAULT_SUGGESTIONS;
 
   const submit = (resolvedPrompt: string, attachments: ComposerAttachment[]) => {
     const trimmedPrompt = resolvedPrompt.trim();
-    if (!trimmedPrompt || props.busy || submissionBlocked) return;
+    if (!trimmedPrompt || props.busy) return;
     props.onRunTask(trimmedPrompt, attachments);
   };
 
@@ -133,9 +116,9 @@ export function SessionEmptyHero(props: SessionEmptyHeroProps) {
     <div className="mx-auto w-full max-w-[640px] space-y-6 px-6">
       <div className="space-y-1.5 text-center">
         <h2 className="text-[24px] font-semibold leading-[30px] tracking-[-0.02em] text-foreground">
-          {t("composer.hero_title")}
+          What do you need done?
         </h2>
-        <p className="text-[13px] text-muted-foreground">{t("composer.hero_subtitle")}</p>
+        <p className="text-[13px] text-muted-foreground">Describe it in plain language</p>
       </div>
 
       <NewTaskComposer
@@ -143,50 +126,28 @@ export function SessionEmptyHero(props: SessionEmptyHeroProps) {
         onDraftChange={setPrompt}
         onRunTask={submit}
         busy={props.busy ?? false}
-        submissionPreparing={submissionPreparing}
-        submissionBlocked={submissionBlocked}
         context={props.composer ?? null}
       />
-
-      {cloudMcpSubmissionState?.status === "failed" ? (
-        <div
-          className="flex items-center gap-3 rounded-xl border border-red-7/40 bg-red-2/40 px-3 py-2 text-left text-xs text-red-11"
-          data-testid="cloud-mcp-new-task-failure"
-        >
-          <span className="min-w-0 flex-1">
-            {[
-              cloudMcpSubmissionState.issue?.message ?? t("composer.tools_prepare_failed"),
-              cloudMcpSubmissionState.issue?.recommendedAction,
-            ].filter(Boolean).join(" ")}
-          </span>
-          <button type="button" className="font-medium hover:underline" onClick={props.composer?.onRetryCloudConnection}>
-            {t("composer.retry")}
-          </button>
-          <button type="button" className="font-medium hover:underline" onClick={props.composer?.onOpenConnect}>
-            {t("composer.open_connect")}
-          </button>
-        </div>
-      ) : null}
 
       {showModelsHint ? (
         <div
           className="flex items-center justify-center gap-2 text-[12px] text-muted-foreground"
           data-testid="openwork-models-hint"
         >
-          <span>{t("composer.free_starter_model")}</span>
+          <span>Using the free starter model.</span>
           <button
             type="button"
             className="flex items-center gap-1 font-medium text-blue-10 transition-colors hover:text-blue-11"
             onClick={() => platform.openLink(getOpenWorkModelsActionUrl(denAuth.isSignedIn, "sign-up"))}
           >
-            {t("composer.frontier_models_cta")}
+            Get frontier models with no API keys
             <ArrowRight className="size-3" />
           </button>
           <button
             type="button"
             className="flex size-5 items-center justify-center rounded text-muted-foreground/70 transition-colors hover:text-foreground"
             onClick={hideOpenWorkModelsPromo}
-            aria-label={t("composer.hide_models_hint")}
+            aria-label="Hide OpenWork Models hint"
           >
             <X className="size-3" />
           </button>
@@ -201,9 +162,9 @@ export function SessionEmptyHero(props: SessionEmptyHeroProps) {
         >
           <Zap className="mt-0.5 size-4 shrink-0 text-blue-10" />
           <div>
-            <div className="text-[13px] font-medium text-foreground">{t("composer.connect_provider_title")}</div>
+            <div className="text-[13px] font-medium text-foreground">Connect a model provider</div>
             <div className="mt-0.5 text-[12px] text-muted-foreground">
-              {t("composer.connect_provider_desc")}
+              Add an API key for Anthropic, OpenAI, Google, or other providers so tasks can run.
             </div>
           </div>
         </button>
