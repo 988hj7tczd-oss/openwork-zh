@@ -95,39 +95,26 @@ export default {
   "composer.attachments_unavailable": "附件功能不可用。",
   "composer.behavior_label": "行为",
   "composer.configure": "配置",
-  "composer.connect_provider_desc": "添加 Anthropic、OpenAI、Google 或其他提供商的 API 密钥，以便任务可以运行。",
-  "composer.connect_provider_title": "连接模型提供商",
+
   "composer.default_agent": "默认智能体",
   "composer.file_kind": "文件",
-  "composer.free_starter_model": "正在使用免费入门模型。",
-  "composer.frontier_models_cta": "无需 API 密钥即可使用前沿模型",
-  "composer.hero_subtitle": "用大白话描述你的需求",
-  "composer.hero_title": "你想做什么？",
-  "composer.hide_models_hint": "隐藏 OpenWork Models 提示",
+
   "composer.image_kind": "图片",
   "composer.inserted_links_unsupported": "已为不支持的文件插入链接。",
   "composer.loading_commands": "正在加载命令…",
   "composer.mcps_label": "MCP",
   "composer.no_commands": "未找到命令。",
-  "composer.no_mcp_servers": "未加载任何 MCP 服务器。",
-  "composer.open_connect": "打开 Connect",
+
   "composer.placeholder": "描述你的任务…",
-  "composer.preparing_workspace": "正在准备工作区…",
+
   "composer.remote_worker_paste_warning": "这是远程工作区。沙箱也是远程的。要共享文件，请上传到侧边栏的共享文件夹。",
-  "composer.retry": "重试",
+
   "composer.run_task": "运行任务",
   "composer.skill_source": "Skill",
   "composer.stop": "停止",
-  "composer.suggestion_document_desc": "从几个要点生成报告、邮件或简报。",
-  "composer.suggestion_document_title": "起草文档",
-  "composer.suggestion_spreadsheet_desc": "放入 CSV 文件并描述你想要的结果。",
-  "composer.suggestion_spreadsheet_title": "清理电子表格",
-  "composer.suggestion_summarize_desc": "从邮件和日历提取重点。",
-  "composer.suggestion_summarize_title": "总结我的一周",
-  "composer.suggestion_web_desc": "用内置浏览器处理重复步骤。",
-  "composer.suggestion_web_title": "自动化网页任务",
+
   "composer.tools_label": "命令、技能和MCP",
-  "composer.tools_prepare_failed": "无法准备已连接的服务工具。",
+
   "composer.upload_to_shared_folder": "上传到共享文件夹",
   "composer.uploaded_multiple_files": "已上传{count}个文件到共享文件夹并插入链接。",
   "composer.uploaded_single_file": "已上传{name}到共享文件夹并插入链接。",
@@ -150,7 +137,7 @@ export default {
   "composer.steer": "发送",
   "composer.steer_hint": "立即发送——智能体会在任务中途调整",
   "connect.applying": "正在连接…",
-  "connect.attention_title": "可能的问题：{description}",
+
   "connect.confirm_body": "此应用将使用 {host} 作为组织服务器。尚未更改任何内容。",
   "connect.confirm_cta": "连接",
   "connect.confirm_expires_label": "链接过期时间",
@@ -618,7 +605,7 @@ export default {
   "den.status_browser_signup": "请在浏览器中完成账户创建以连接OpenWork。",
   "den.status_cloud_signed_in_as": "已作为{email}连接OpenWork Cloud。",
   "den.status_cloud_signin_done": "已连接OpenWork Cloud。",
-  "den.status_loaded_orgs": "已加载{count}个组织。",
+
   "den.status_signed_in_as": "已登录为{email}。",
   "den.status_signed_out": "已退出登录并清除此设备上的OpenWork Cloud会话。",
   "den.sync": "同步",
@@ -914,7 +901,7 @@ export default {
   "model_picker.connect_provider_hint": "连接此提供商以浏览和保存模型",
   "model_picker.default_model_desc": "选择新对话的默认模型，然后在其卡片上微调推理配置后点击完成。",
   "model_picker.default_model_title": "默认模型",
-  "model_picker.model_count": "{count}个模型",
+
   "model_picker.more_providers": "更多提供商",
   "model_picker.no_results": "没有匹配的模型。",
   "model_picker.other_connected_models": "其他已连接的模型",
@@ -1711,7 +1698,7 @@ export default {
   "status.mcp_connected": "{count}个MCP已连接",
   "status.open_docs": "打开文档",
   "status.openwork_ready": "OpenWork就绪",
-  "status.providers_connected": "{count}个提供商已连接",
+
   "status.ready_for_tasks": "可接受新任务",
   "status.running": "运行中",
   "status.send_feedback": "发送反馈",
