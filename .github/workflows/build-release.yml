@@ -87,12 +87,18 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v0.1.6-zh.1
-          name: OpenWork 中文社区版 v0.1.6-zh.1
+          tag_name: v0.1.7-zh.1
+          name: OpenWork 中文社区版 v0.1.7-zh.1
           body: |
-            ## OpenWork 中文社区版 v0.1.6-zh.1
+            ## OpenWork 中文社区版 v0.1.7-zh.1
 
             100% 简体中文界面的 AI 工作流共享桌面应用（基于 different-ai/openwork，非官方社区版）。
+
+            ### 本次更新
+
+            - 同步官方 v0.18.16（109 commits）：Library 重构、Connect 状态面板、云端 provider 自动导入、Den automations
+            - 新增 31 条中文翻译（Connect 状态 / Den 云 provider / Library 新 tab）
+            - 清理官方废弃 key，界面 100% 中文覆盖保持
 
             ### 平台安装包
 
